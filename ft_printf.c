@@ -6,7 +6,7 @@
 /*   By: gfrancis <gfrancis@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:00:02 by gfrancis          #+#    #+#             */
-/*   Updated: 2023/05/04 12:58:46 by gfrancis         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:01:27 by gfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int	typeargs(va_list args, const char *str, long long i)
 	if (str[i + 1] == 'u')
 		return (ft_putunnbr(va_arg(args, unsigned int)));
 	if (str[i + 1] == 'x')
-		return (ft_putnbr_hx(va_arg(args,unsigned int), 0));
+		return (ft_putnbr_hx(va_arg(args, unsigned int), 0));
 	if (str[i + 1] == 'X')
-		return (ft_putnbr_hx(va_arg(args,unsigned int), 1));	
+		return (ft_putnbr_hx(va_arg(args, unsigned int), 1));
+	if (str[i + 1] == '%')
+		return (ft_putchar('%'));
+	// if (str[i + 1] == 'p')
+	// 	return (ft_putstr("0x") + "funcao de retorno de ponteiros")	
 	return (0);
 }
 
@@ -39,7 +43,6 @@ int	ft_printf(const char *str, ...)
 	
 	va_start(args, str);
 	i = 0;
-
 	while(str[i])
 	{
 		if(str[i] == '%')

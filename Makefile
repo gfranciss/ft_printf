@@ -17,7 +17,6 @@ all: $(NAME)
 $(NAME): $(OBJ) $(INCLUDE)
 		ar -rcs $(NAME) $(OBJ)
 
-
 %.o: %.c $(INCLUDE)
 		$(CC) $(CFLAGS) -c $< -o $@
 
