@@ -1,7 +1,8 @@
 NAME = ft_printf.a
 
 SRCS = ft_printf_part1.c\
-		ft_printf.c
+		ft_printf.c\
+		ft_strcpy.c
 
 INCLUDE = ft_printf.h
 
