@@ -1,4 +1,4 @@
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 SRCS = ft_printf_part1.c\
 		ft_printf.c\

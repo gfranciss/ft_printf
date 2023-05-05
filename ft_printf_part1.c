@@ -6,7 +6,7 @@
 /*   By: gfrancis <gfrancis@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:58:03 by gfrancis          #+#    #+#             */
-/*   Updated: 2023/05/05 10:33:50 by gfrancis         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:18:52 by gfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@
 
 int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	int i;
+
+	i = write(1, &c, 1);
 	return (1);
 }
 
 int	ft_putstr(char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	if (s == NULL)
-		return (ft_putstr("(null)"));
-	while (s[i] != '\0')
+	if (s == 0)
 	{
-		write(1, &s[i], 1);
-		i++;
+		i = write(1, "(null)", 6);
+		return(i);
+	}
+	while (*s != '\0')
+	{
+		i += write(1, s, 1);
+		s++;
 	}
 	return(i);
 }
@@ -39,32 +44,20 @@ int	ft_putnbr(int nbr)
 {
 	int	i;
 
-	i = 1;
-	if (nbr <= INT_MAX && nbr >= INT_MIN)
+	i = 0;
+	if (nbr == INT_MIN)
+		i += write(1, "-2147483648", 11);
+	else
 	{
 		if (nbr < 0)
 		{
-			if (nbr == INT_MIN)
-				return (ft_putstr("-2147483648"));
-			ft_putchar('-');
+			i += ft_putchar('-');
 			nbr *= -1;
 		}
-		else if (nbr > 9)
-		{
-			ft_putnbr(nbr / 10);
-			ft_putnbr(nbr % 10);
-		}
-		else
-			ft_putchar(nbr + '0');
-	}
 		if (nbr >= 10)
-		{
-			while (nbr / i > 9)
-			{
-				i *= 10;
-				i++;
-			}
-		}
+			i += ft_putnbr(nbr / 10);
+		i += ft_putchar((nbr % 10) + '0');
+	}
 	return (i);
 }
 
@@ -72,20 +65,10 @@ int	ft_putunnbr(unsigned int nbr)
 {
 	unsigned int i;
 	
-	i = 1;
-	if (nbr > 9)
-	{
-		ft_putunnbr(nbr / 10);
-		ft_putunnbr(nbr % 10);
-	}
-	else 
-		ft_putchar(nbr + '0');
+	i = 0;
 	if (nbr >= 10)
-		while (nbr / i > 9)
-		{
-			i *= 10;
-			i++;
-		}
+		i += ft_putunnbr(nbr /10);
+	i += ft_putchar((nbr % 10) + '0');
 	return (i);
 }
 int ft_putnbr_hx(unsigned int nbr, int caps)
@@ -99,7 +82,7 @@ int ft_putnbr_hx(unsigned int nbr, int caps)
 	else
 		ft_strcpy(hexadecimal, "0123456789ABCDEF");
 	if(nbr >= 16)
-		ft_putnbr_hx(nbr / 16, caps);
+		i += ft_putnbr_hx(nbr / 16, caps);
 	i += ft_putchar(hexadecimal[nbr % 16]);
 
 	return (i);
@@ -112,8 +95,13 @@ int	ft_putptr(unsigned long nbr)
 
 	i = 0;
 	ft_strcpy(hexadecimal, "0123456789abcdef");
+	if (nbr == 0)
+	{
+		i = write(1, "(nil)", 5);
+		return(i);
+	}
 	if (nbr >= 16)
-		ft_putptr(nbr / 16);
+		i += ft_putptr(nbr / 16);
 	i += ft_putchar(hexadecimal[nbr % 16]);
 	return (i);
 }
