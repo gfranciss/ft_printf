@@ -6,7 +6,7 @@
 /*   By: gfrancis <gfrancis@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:58:03 by gfrancis          #+#    #+#             */
-/*   Updated: 2023/05/04 19:01:19 by gfrancis         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:33:50 by gfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,18 @@ int ft_putnbr_hx(unsigned int nbr, int caps)
 		ft_putnbr_hx(nbr / 16, caps);
 	i += ft_putchar(hexadecimal[nbr % 16]);
 
+	return (i);
+}
+
+int	ft_putptr(unsigned long nbr)
+{
+	int		i;
+	char	hexadecimal[16];
+
+	i = 0;
+	ft_strcpy(hexadecimal, "0123456789abcdef");
+	if (nbr >= 16)
+		ft_putptr(nbr / 16);
+	i += ft_putchar(hexadecimal[nbr % 16]);
 	return (i);
 }
