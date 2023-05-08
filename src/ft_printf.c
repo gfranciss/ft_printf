@@ -6,11 +6,11 @@
 /*   By: gfrancis <gfrancis@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:00:02 by gfrancis          #+#    #+#             */
-/*   Updated: 2023/05/05 16:22:07 by gfrancis         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:02:16 by gfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 #include <stdarg.h>
 
 int	typeargs(va_list args, char str)
