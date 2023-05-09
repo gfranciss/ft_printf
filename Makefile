@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(INCLUDE)
 		ar -rcs $(NAME) $(OBJ)
 
-%.o: %.c $(INCLUDE)
+%.o: $(SRC_DIR)/%.c $(INCLUDE)
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
